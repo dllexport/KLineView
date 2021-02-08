@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var cellLastHeight = KLineVM.sharedInstance.cellHeight
@@ -18,41 +19,44 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
     /// 竖直线
     lazy var verticalLineLayer = CAShapeLayer.init()
     
+    let textColor = UIColor(red: 80 / 255, green: 81 / 255, blue: 91 / 255, alpha: 0.7).cgColor
+    
     lazy var maxTextLayer:CATextLayer = {
-       
         var maxTextLayer = CATextLayer.init()
         maxTextLayer.fontSize = kLineViewFontSize
-        maxTextLayer.foregroundColor = UIColor.black.cgColor
+        maxTextLayer.foregroundColor = textColor
         maxTextLayer.alignmentMode = CATextLayerAlignmentMode.left
         maxTextLayer.contentsScale = UIScreen.main.scale
         return maxTextLayer
     }()
+    
     lazy var minTextLayer:CATextLayer = {
-        
         var minTextLayer = CATextLayer.init()
         minTextLayer.fontSize = kLineViewFontSize
-        minTextLayer.foregroundColor = UIColor.black.cgColor
+        minTextLayer.foregroundColor = textColor
         minTextLayer.contentsScale = UIScreen.main.scale
         return minTextLayer
     }()
+    
     lazy var midTextLayer:CATextLayer = {
-        
         var midTextLayer = CATextLayer.init()
         midTextLayer.fontSize = kLineViewFontSize
-        midTextLayer.foregroundColor = UIColor.black.cgColor
+        midTextLayer.foregroundColor = textColor
         midTextLayer.contentsScale = UIScreen.main.scale
         return midTextLayer
     }()
     
+    // 每一組有幾個 cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return KLineVM.sharedInstance.data.count
     }
     
+    // 每個 cell 要顯示的內容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 创建复用cell 并且传递index
         // 传递index是因为cell还要获取旁边两个cell的数据完成均线 传递的index可以借助VM实现数据获取 
         let cell = KLinePriceCell.init(style: .default, reuseIdentifier: kLinePriceRID)
-        // 🔥渲染之前先计算出当前页面即将展示的所有数据的极值
+        // 🔥 渲染之前先计算出当前页面即将展示的所有数据的极值
         self.findExtreNum()
         cell.index = indexPath.row
         
@@ -115,10 +119,10 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func pinchAction(pinchGes: UIPinchGestureRecognizer) {
-        print(pinchGes.state)
-        print(pinchGes.scale)
-        print(pinchGes.velocity)
-        
+//        print(pinchGes.state)
+//        print(pinchGes.scale)
+//        print(pinchGes.velocity)
+//
         // 滑动开始 记录一下当前cell的高度
         if pinchGes.state == .began {
             cellLastHeight = KLineVM.sharedInstance.cellHeight
@@ -129,7 +133,7 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
             //计算当前捏合后cell的应该宽度
             let tempHeight = cellLastHeight * pinchGes.scale
             
-            if tempHeight != cellLastHeight && tempHeight >= 10 && tempHeight <= 30{
+            if tempHeight != cellLastHeight && tempHeight >= 5 && tempHeight <= 20 {
                  // 🔥计算捏合中心，根据中心点，确定放大位置
                 let pOne = pinchGes.location(ofTouch: 0, in: self)
                 let pTwo = pinchGes.location(ofTouch: 1, in: self)
@@ -191,8 +195,8 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
     func layoutGuideLine(index: IndexPath) -> () {
-        
         // 当前的cell的位置
         let rect = self.rectForRow(at: index)
         // 找到当前的数据
@@ -211,6 +215,7 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
         verticalLineLayerPath.addLine(to: CGPoint.init(x: kLinePriceViewHeight, y: y))
         verticalLineLayer.path = verticalLineLayerPath.cgPath
     }
+    
     func reloadMark() {
 
         CATransaction.begin()
@@ -231,10 +236,11 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.separatorStyle = .none
         self.delegate = self
         self.dataSource = self
+        self.showsVerticalScrollIndicator = false
         
         // 🔥 为了保证contentOffset生效
-        self.estimatedRowHeight = 0;// default is UITableViewAutomaticDimension, set to 0 to disable
-        self.estimatedSectionHeaderHeight = 0;// default is UITableViewAutomaticDimension, set to 0 to disable
+        self.estimatedRowHeight = 0; // default is UITableViewAutomaticDimension, set to 0 to disable
+        self.estimatedSectionHeaderHeight = 0; // default is UITableViewAutomaticDimension, set to 0 to disable
         self.estimatedSectionFooterHeight = 0; // default is UITableViewAutomaticDimension, set to 0 to disable
         
         self.layer.addSublayer(horizontalLineLayer)
@@ -246,8 +252,8 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
         horizontalLineLayer.lineWidth = 1
         verticalLineLayer.lineWidth = 1
 
-        horizontalLineLayer.strokeColor = UIColor.black.cgColor
-        verticalLineLayer.strokeColor = UIColor.black.cgColor
+        horizontalLineLayer.strokeColor = UIColor.blue.cgColor
+        verticalLineLayer.strokeColor = UIColor.blue.cgColor
         
         maxTextLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(-.pi * 0.5)))
         minTextLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(-.pi * 0.5)))
@@ -259,6 +265,7 @@ class KLinePriceView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let longPressGes = UILongPressGestureRecognizer.init(target: self, action:  #selector(longPressAction(longPressGes:)))
         self.addGestureRecognizer(longPressGes)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

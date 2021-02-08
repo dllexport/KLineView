@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0862A16E300B4861C95A150F /* Pods_KLineViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604B732B20F6CE22D2B461F3 /* Pods_KLineViewTests.framework */; };
+		AC778FBA25D17D9A00A6C6A9 /* kline.json in Resources */ = {isa = PBXBuildFile; fileRef = AC778FB625D16BFF00A6C6A9 /* kline.json */; };
+		AC778FC825D1845600A6C6A9 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC778FC725D1845600A6C6A9 /* UIColorExtension.swift */; };
 		B1D73D7E5C1AB087BF75A141 /* Pods_KLineViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD9B39BFAE904C61545D15D /* Pods_KLineViewUITests.framework */; };
 		CC829EFA2201818700024496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC829EF92201818700024496 /* AppDelegate.swift */; };
 		CC829EFC2201818700024496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC829EFB2201818700024496 /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 		4F95F9F8B8D74EAA9665464B /* Pods-KLineViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLineViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KLineViewTests/Pods-KLineViewTests.debug.xcconfig"; sourceTree = "<group>"; };
 		604B732B20F6CE22D2B461F3 /* Pods_KLineViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLineViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C62A3E3D076F3E4C43B69FD /* Pods_KLineView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLineView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC778FB625D16BFF00A6C6A9 /* kline.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = kline.json; sourceTree = "<group>"; };
+		AC778FC725D1845600A6C6A9 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		ADBBED89208BD732A123719C /* Pods-KLineViewUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLineViewUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KLineViewUITests/Pods-KLineViewUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6E34661E00EAF78DB145028 /* Pods-KLineViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLineViewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KLineViewUITests/Pods-KLineViewUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CC829EF62201818700024496 /* KLineView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KLineView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +158,7 @@
 				CC829F002201818900024496 /* Assets.xcassets */,
 				CC829F022201818900024496 /* LaunchScreen.storyboard */,
 				CC829F052201818900024496 /* Info.plist */,
+				AC778FB625D16BFF00A6C6A9 /* kline.json */,
 			);
 			path = KLineView;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				CC829F2C220181AE00024496 /* Const */,
 				CC829F2E220181AE00024496 /* Model */,
 				CC829F30220181AE00024496 /* View */,
+				AC778FC725D1845600A6C6A9 /* UIColorExtension.swift */,
 			);
 			path = KLine;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC778FBA25D17D9A00A6C6A9 /* kline.json in Resources */,
 				CC829F042201818900024496 /* LaunchScreen.storyboard in Resources */,
 				CC829F012201818900024496 /* Assets.xcassets in Resources */,
 				CC829F4C2201851700024496 /* KLineData.plist in Resources */,
@@ -427,24 +434,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KLineView/Pods-KLineView-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-KLineView/Pods-KLineView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-KLineView/Pods-KLineView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KLineView/Pods-KLineView-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KLineView/Pods-KLineView-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E73FCBBD621F689C89670243 /* [CP] Check Pods Manifest.lock */ = {
@@ -487,6 +485,7 @@
 				CC829F3E220181AE00024496 /* KLinePriceCell.swift in Sources */,
 				CC829F3C220181AE00024496 /* KLineVolumeView.swift in Sources */,
 				CC829F3A220181AE00024496 /* KLineView.swift in Sources */,
+				AC778FC825D1845600A6C6A9 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +591,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -647,7 +646,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -663,13 +662,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3725Q3XY9A;
+				DEVELOPMENT_TEAM = WG384XMNRS;
 				INFOPLIST_FILE = KLineView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.cclion.KLineView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dllexport.KLineView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -682,13 +681,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3725Q3XY9A;
+				DEVELOPMENT_TEAM = WG384XMNRS;
 				INFOPLIST_FILE = KLineView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.cclion.KLineView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dllexport.KLineView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

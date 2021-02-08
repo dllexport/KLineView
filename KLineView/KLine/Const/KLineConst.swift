@@ -15,19 +15,19 @@ let kLineViewWitdh: CGFloat = UIScreen.main.bounds.width
 // MARK:- 日K线数据
 //1、价格走势部分
 /// K线价格视图高度（含两边边距）
-let kLinePriceViewHeight: CGFloat = 200
+let kLinePriceViewHeight: CGFloat = 320
 /// K线价格视图内边距
-let kLinePriceViewSeg: CGFloat = 10
-/// K线价格视图Cell中K线柱的内边距
-let kLinePriceViewCellSeg: CGFloat = 2
+let kLinePriceViewSeg: CGFloat = 0
+/// K线价格视图Cell中K线柱的内边距 (在一个cell内的padding)
+let kLinePriceViewCellSeg: CGFloat = 1
 
 //2、间隔
 /// K线价格视图和交易量视图间距
-let kLineViewInterval: CGFloat = 30
+let kLineViewInterval: CGFloat = 0
 
 //3、交易量部分
 /// K线交易量视图高度（自身无边距）
-let kLineVolumeViewHeight: CGFloat = 150
+let kLineVolumeViewHeight: CGFloat = 64
 /// K线视图默认cell的宽度
 let kLineViewCellDefaultHeight: CGFloat = 10
 /// K线视图总高度
@@ -52,9 +52,9 @@ func KRGBColor(r:CGFloat,g:CGFloat,b:CGFloat) ->UIColor{
     return UIColor.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
 }
 /// K线上升颜色
-let kLinePriceUpColor = KRGBColor(r: 221, g: 71, b: 66) //红
+let kLinePriceUpColor = KRGBColor(r: 255, g: 122, b: 104) //红
 /// K线下降颜色
-let kLinePriceDownColor = KRGBColor(r: 76, g: 167, b: 68) //绿
+let kLinePriceDownColor = KRGBColor(r: 61, g: 186, b: 162) //绿
 /// K线MA5颜色
 let kLineMA5Color = KRGBColor(r: 240, g: 158, b: 66)
 /// K线MA10颜色

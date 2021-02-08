@@ -17,6 +17,7 @@ class KLineVolumeCell: UITableViewCell {
             currData = data
         }
     }
+    
     var currData: KLineModel? {
         didSet{
             // 如果极大值为0 说明当前最大值还没有计算出来 不需要渲染了
@@ -28,8 +29,7 @@ class KLineVolumeCell: UITableViewCell {
     }
     
     lazy var pillarLayer = CAShapeLayer.init()
-
-    
+   
     @objc func layoutSubViews() {
         
         if currData == nil{
@@ -40,8 +40,7 @@ class KLineVolumeCell: UITableViewCell {
 
         // color
         if currData!.closeprice >= currData!.openprice {
-            pillarLayer.fillColor = UIColor.white.cgColor
-            pillarLayer.strokeColor = kLinePriceUpColor.cgColor
+            pillarLayer.fillColor = kLinePriceUpColor.cgColor
         }else{
             pillarLayer.fillColor = kLinePriceDownColor.cgColor
         }
@@ -73,13 +72,10 @@ class KLineVolumeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

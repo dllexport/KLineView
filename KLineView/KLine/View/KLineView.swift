@@ -15,12 +15,15 @@ import HandyJSON
     /// 保持价格视图和交易量视图捏合时 cell的宽度一致
     func kLineViewDidPinch(_ tableView: UITableView)
     /// 保持价格视图和交易量视图长按时可以统一绘制数据线
-//    func kLineViewDidHandleLong(_ tableView: UITableView)
     func kLineViewDidHandleLong(_ tableView: UITableView, longPressGes: UILongPressGestureRecognizer, index: IndexPath)
 }
 
 
 class KLineView: UIView, KLineViewDelegate {
+    
+    private let priceView = KLinePriceView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0), style: .plain)
+    private let volumeView = KLineVolumeView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0), style: .plain)
+
     func kLineViewDidHandleLong(_ tableView: UITableView, longPressGes: UILongPressGestureRecognizer, index: IndexPath) {
         if tableView == priceView{
             volumeView.drawWithLongPress(longPressGes: longPressGes, index: index)
@@ -44,29 +47,29 @@ class KLineView: UIView, KLineViewDelegate {
             priceView.reloadData()
         }
     }
-    
-    var priceView = KLinePriceView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0), style: .plain)
-    var volumeView = KLineVolumeView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0), style: .plain)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(priceView)
-        self.addSubview(volumeView)
-
         priceView.delegateK = self
         volumeView.delegateK = self
         
         priceView.layer.borderWidth = 1
         volumeView.layer.borderWidth = 1
 
+        // 旋转90度
         priceView.transform = CGAffineTransform(rotationAngle: CGFloat(.pi * 0.5));
         volumeView.transform = CGAffineTransform(rotationAngle: CGFloat(.pi * 0.5));
 
         priceView.frame = CGRect.init(x: 0, y: 0, width: kLineViewWitdh, height: kLinePriceViewHeight)
         volumeView.frame = CGRect.init(x: 0, y: kLinePriceViewHeight + kLineViewInterval, width: kLineViewWitdh, height: kLineVolumeViewHeight)
 
+        
+        self.addSubview(priceView)
+        self.addSubview(volumeView)
+
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

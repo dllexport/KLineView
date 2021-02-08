@@ -1,5 +1,7 @@
 # HandyJSON
 
+***To deal with crash on iOS 14 beta4 please try version 5.0.3-beta***
+
 HandyJSON is a framework written in Swift which to make converting model objects( **pure classes/structs** ) to and from JSON easy on iOS.
 
 Compared with others, the most significant feature of HandyJSON is that it does not require the objects inherit from NSObject(**not using KVC but reflection**), neither implements a 'mapping' function(**writing value to memory directly to achieve property assignment**).
@@ -104,13 +106,17 @@ An overview of types supported can be found at file: [BasicTypes.swift](./HandyJ
 
 * iOS 8.0+/OSX 10.9+/watchOS 2.0+/tvOS 9.0+
 
-* Swift 3.0+ / Swift 4.0+
+* Swift 3.0+ / Swift 4.0+ / Swift 5.0+
 
 # Installation
 
-**To use with Swift 3.x using >= 1.8.0**
+**To use with Swift 5.0/5.1 ( Xcode 10.2+/11.0+ ), version == 5.0.2**
 
-**To use with Swift 4.0 using == 4.1.1**
+**To use with Swift 4.2 ( Xcode 10 ), version == 4.2.0**
+
+**To use with Swift 4.0, version >= 4.1.1**
+
+**To use with Swift 3.x, version >= 1.8.0**
 
 For Legacy Swift2.x support, take a look at the [swift2 branch](https://github.com/alibaba/HandyJSON/tree/master_for_swift_2x).
 
@@ -119,7 +125,7 @@ For Legacy Swift2.x support, take a look at the [swift2 branch](https://github.c
 Add the following line to your `Podfile`:
 
 ```
-pod 'HandyJSON', '~> 4.1.1'
+pod 'HandyJSON', '~> 5.0.2'
 ```
 
 Then, run the following command:
@@ -133,7 +139,7 @@ $ pod install
 You can add a dependency on `HandyJSON` by adding the following line to your `Cartfile`:
 
 ```
-github "alibaba/HandyJSON" ~> 4.1.1
+github "alibaba/HandyJSON" ~> 5.0.2
 ```
 
 ## Manually
@@ -681,7 +687,10 @@ class BasicTypes: HandyJSON {
 }
 ```
 
+# Credit
 
+* [reflection](https://github.com/Zewo/Reflection): After the first version which used the swift mirror mechanism, HandyJSON had imported the reflection library and rewrote some code for class properties inspecting.
+* [ObjectMapper](https://github.com/tristanhimmelman/ObjectMapper): To make HandyJSON more compatible with the general style, the Mapper function support Transform which designed by ObjectMapper. And we import some testcases from ObjectMapper.
 
 # License
 
